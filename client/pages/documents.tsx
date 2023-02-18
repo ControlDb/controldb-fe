@@ -1,13 +1,19 @@
-// import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/20/solid'
-import { useRouter } from "next/router"
+import { useRouter, withRouter } from "next/router"
+
+import Header from "@/components/header"
 
 export default function Documents() {
   const router = useRouter()
+  const { user } = router.query
+
+  // use effect to get user's documents
 
 
   const createNewFile = () => {
-    // TODO: Calling API for creating new file
-    router.push('/create-document')
+    router.push({
+      pathname: '/create-document',
+      query: { user: user }
+    })
   }
 
   const people = [
@@ -41,6 +47,8 @@ export default function Documents() {
   // More people...
 ]
   return (
+    <>
+    <Header user={user} />
     <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-6">
       <li
           key='1'
@@ -101,5 +109,7 @@ export default function Documents() {
         </li>
       ))}
     </ul>
+    </>
   )
 }
+

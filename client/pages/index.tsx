@@ -1,16 +1,12 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+
 
 import Header from '../components/header'
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  const [user, setUser] = useState<String>('')
+  const [user, setUser] = useState('')
   const router = useRouter()
 
   const handleChange = (e: any) => {
@@ -23,12 +19,15 @@ export default function Home() {
       alert('Please enter a username')
       return
     }
-    router.push('/documents')
+    router.push({
+      pathname: '/documents',
+      query: {user: user}
+    })
   }
     
   return (
     <>
-    <Header />
+    <Header user='' />
       <div className='h-screen justify-center flex items-center'>
         <div className='content-center'>
           <h1 className='text-6xl font-bold my-6'>Login</h1>

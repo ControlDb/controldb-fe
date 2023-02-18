@@ -1,49 +1,95 @@
 import { useState } from 'react';
+import Header from '@/components/header';
+import { useRouter, withRouter } from "next/router"
+
 
 export default function CreateDocument() {
   const [fields, setFields] = useState<Field[]>([]);
   const [openFieldBox, setOpenFieldBox] = useState<boolean>(false);
+  const router = useRouter()
+  const { user } = router.query
 
   const addField = (field: Field) => {
+    // check if field name already exists
+    const fieldExists = fields.find((f) => f.fieldName === field.fieldName);
+    if (fieldExists) {
+      alert('Field name already exists');
+      return;
+    }
+    // check if fields are empty
+    if (field.fieldName === '' || field.type === '' || field.value === '') {
+      alert('Fields cannot be empty');
+      return;
+    }
+    // 
     setFields([...fields, field]);
     setOpenFieldBox(false);
   };
+  
+  const setPermission = () => {
+    // check if fields are empty
+    if (fields.length === 0) {
+      alert('Fields cannot be empty');
+      return;
+    }
+    // Set localStorage to store fields
+    localStorage.setItem('fields', JSON.stringify(fields))
+    
 
+    router.push({
+      pathname: '/set-permission',
+      query: { 
+        user: user,
+       }
+    })
+  }
 
   return (
-  <div className='my-6'>
-    {/* Top left Text */}
-    <div className="flex flex-col justify-center items-start">
-      <h1 className="text-3xl font-bold text-gray-900">Create a new document</h1>
-    </div>
+    <>
+      <Header user={'user'}/>
+      <div className='my-6 mx-auto max-w-7xl px-6'>
+      {/* Top left Text */}
+      <div className="flex flex-col justify-center items-start">
+        <h1 className="text-3xl font-bold text-gray-900">Create a new document</h1>
+      </div>
 
-    <div className="flex justify-center my-4">
+    <div className="flex justify-center my-4 bg:gray ">
       <div className="w-full md:w-1/3 p-4 text-lg font-semibold">Field Name</div>
       <div className="w-full md:w-1/3 p-4 text-lg font-semibold">Field Type</div>
       <div className="w-full md:w-1/3 p-4 text-lg font-semibold">Field Value</div>
     </div>
 
+      {/* Fields */}
+    {fields.map((field) => (
+      <div className="flex justify-center my-4">
+        <div className="w-full md:w-1/3 p-4 text-lg font-semibold">{field.fieldName}</div>
+        <div className="w-full md:w-1/3 p-4 text-lg font-semibold">{field.type}</div>
+        <div className="w-full md:w-1/3 p-4 text-lg font-semibold">{field.value}</div>
+      </div>
+    ))}
+
     {/* Field Box */}
     {openFieldBox && (
       <div className="flex justify-center my-4">
-        <div className="w-full md:w-1/3 p-4 text-lg font-semibold">
+        <div className="w-full md:w-1/4 p-4 text-lg font-semibold">
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="field-name"
             type="text"
             placeholder="Field Name"
           />
-          <select
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="field-type"
-          >
-            <option value={FieldType.String}>String</option>
-            <option value={FieldType.Number}>Number</option>
-            <option value={FieldType.Boolean}>Boolean</option>
-          </select>
-
-
         </div>
+
+        <div className='w-full md:w-1/4 text-lg font-semibold mt-4'>
+        <select
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="field-type"
+        >
+          <option value={FieldType.String}>String</option>
+        </select>
+        </div>
+
+
         <div className="w-full md:w-1/3 p-4 text-lg font-semibold">
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -72,16 +118,10 @@ export default function CreateDocument() {
         </div>
         </div>
     )}
-    {/* Fields */}
-    {fields.map((field) => (
-      <div className="flex justify-center my-4">
-        <div className="w-full md:w-1/3 p-4 text-lg font-semibold">{field.fieldName}</div>
-        <div className="w-full md:w-1/3 p-4 text-lg font-semibold">{field.type}</div>
-        <div className="w-full md:w-1/3 p-4 text-lg font-semibold">{field.value}</div>
-      </div>
-    ))}
+
     {/* Plus Button to add field */}
-    <div className="flex justify-center my-4">
+    {!openFieldBox && (   
+       <div className="flex justify-center my-4">
       <div className="w-full md:w-1/3 p-4 text-lg font-semibold">
         <button
           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
@@ -90,10 +130,23 @@ export default function CreateDocument() {
           Add Field
         </button>
       </div>
+    </div>)}
+  </div>
+  <div className="flex justify-center my-4">
+    <div className="w-full md:w-1/3 p-4 text-lg font-semibold my-20">
+      <button
+        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+        onClick={() => setPermission()}
+      >
+        Set Permission
+      </button>
     </div>
   </div>
+     
+  </>
   );
 }
+
 
 
 
@@ -105,6 +158,6 @@ interface Field {
 
 enum FieldType {
   String = 'String',
-  Number = 'Number',
-  Boolean = 'Boolean',
+  // Number = 'Number',
+  // Boolean = 'Boolean',
 }
