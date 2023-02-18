@@ -9,7 +9,23 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        wiggle: 'wiggle 2s ease-in-out infinite',
+        arrow: 'arrow 1s ease-in-out infinite',
+      },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(0)' },
+          '25%, 75%': { transform: 'rotate(1deg)' },
+          '50%': { transform: 'rotate(-1deg)' },
+        },
+        arrow: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateX(0.5rem)' },
+        },
+      },
+    },
   },
   plugins: [],
 }
