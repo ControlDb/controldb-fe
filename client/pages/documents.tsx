@@ -4,15 +4,14 @@ import Header from "@/components/header"
 
 export default function Documents() {
   const router = useRouter()
-  const { user } = router.query
+  const user = localStorage.getItem('user')
 
   // use effect to get user's documents
-
+  // useEffect(() => {
 
   const createNewFile = () => {
     router.push({
       pathname: '/create-document',
-      query: { user: user }
     })
   }
 

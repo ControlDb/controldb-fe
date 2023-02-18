@@ -7,7 +7,7 @@ export default function CreateDocument() {
   const [fields, setFields] = useState<Field[]>([]);
   const [openFieldBox, setOpenFieldBox] = useState<boolean>(false);
   const router = useRouter()
-  const { user } = router.query
+  const user = localStorage.getItem('user')
 
   const addField = (field: Field) => {
     // check if field name already exists
@@ -34,19 +34,15 @@ export default function CreateDocument() {
     }
     // Set localStorage to store fields
     localStorage.setItem('fields', JSON.stringify(fields))
-    
 
     router.push({
       pathname: '/set-permission',
-      query: { 
-        user: user,
-       }
     })
   }
 
   return (
     <>
-      <Header user={'user'}/>
+      <Header user={user}/>
       <div className='my-6 mx-auto max-w-7xl px-6'>
       {/* Top left Text */}
       <div className="flex flex-col justify-center items-start">

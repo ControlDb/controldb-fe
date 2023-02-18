@@ -19,9 +19,9 @@ export default function Home() {
       alert('Please enter a username')
       return
     }
+    localStorage.setItem('user', user)
     router.push({
       pathname: '/documents',
-      query: {user: user}
     })
   }
     
