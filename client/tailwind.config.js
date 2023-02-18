@@ -17,8 +17,8 @@ module.exports = {
       keyframes: {
         wiggle: {
           '0%, 100%': { transform: 'rotate(0)' },
-          '25%, 75%': { transform: 'rotate(1deg)' },
-          '50%': { transform: 'rotate(-1deg)' },
+          '25%, 75%': { transform: 'rotate(10deg)' },
+          '50%': { transform: 'rotate(-10deg)' },
         },
         arrow: {
           '0%, 100%': { transform: 'translateY(0)' },
