@@ -34,11 +34,11 @@ export default function Home() {
   return (
     <>
     <Header user='' />
-      <div className='h-screen justify-center flex items-center'>
+      <div className='justify-center flex items-center'>
         <div className='content-center'>
           <h1 className='text-6xl font-bold my-6'>Login</h1>
-          <form className='flex flex-col my-2'>
-            <input type='text' name='email' id='email' placeholder='Username' onChange={handleChange}/>
+          <form className='flex flex-col my-2 py-6'>
+            <input className='py-2 px- my-4' type='text' name='email' id='email' placeholder='Username' onChange={handleChange}/>
             <button onClick={handleLogin} type='submit' className='bg-blue-500 text-white font-bold py-2 px-4 rounded'>
               Login
             </button>
