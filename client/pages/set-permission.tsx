@@ -40,8 +40,6 @@ export default function SetPermission() {
         }
     ]
 
-    console.log("json", json)
-
     // Upload to IPFS
     const uploadToIPFS = async () => {
       const res = await createUserDocument(user, json)
@@ -61,6 +59,15 @@ export default function SetPermission() {
     <>
     <Header user={user} />
     <div className='px-24'>
+      {/* Add a text explaining how the solution uniquely allows for private read and write
+      Mission-critical for applications handling sensitive data (eg. FinTech) */}
+      <div className="flex justify-center my-4">
+        <div className="w-full md:w-1/2 p-4 text-2xl font-bold">
+          Enter usernames for read and write permissions. 
+          <br />
+          This is important for applications handling sensitive data on decentralised storage solution.
+        </div>
+      </div>
       <div className="flex justify-center my-4 bg:gray">
         <div className="w-full md:w-1/2 p-4 text-2xl font-bold">Read</div>
         <div className="w-full md:w-1/2 p-4 text-2xl font-bold">Write</div>

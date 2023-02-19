@@ -10,6 +10,13 @@ export default function ViewDocument() {
   const user = router.query.user;
   const document = router.query.document;
 
+  const viewDocument = () => {
+    router.push({
+      pathname: `/users/${user}`,
+      query: {user: user}
+    })
+  }
+
   useEffect(() => {
     const getDocument = async () => {
       const res = await getDocumentInfo(document);
@@ -27,7 +34,7 @@ export default function ViewDocument() {
           <h1 className='text-6xl font-bold my-6'>Document Info</h1>
         </div>
       </div>
-      <div className='max-w-4xl mx-auto'>
+      <div className='w-screen mx-auto'>
         <table className='table-auto'>
           <thead>
             <tr>
@@ -47,6 +54,15 @@ export default function ViewDocument() {
           </tbody>
         </table>
       </div>
+      {/* Button to  view document */}
+      <div className='flex justify-center'>
+        <button
+          className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-6'
+          onClick={viewDocument}
+        >
+          View Document
+        </button>
+        </div>
     </>
   );
 }
