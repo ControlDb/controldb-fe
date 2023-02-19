@@ -60,7 +60,8 @@ export default function SetPermission() {
   return (
     <>
     <Header user={user} />
-      <div className="flex justify-center my-4 bg:gray ">
+    <div className='px-24'>
+      <div className="flex justify-center my-4 bg:gray">
         <div className="w-full md:w-1/2 p-4 text-2xl font-bold">Read</div>
         <div className="w-full md:w-1/2 p-4 text-2xl font-bold">Write</div>
       </div>
@@ -86,12 +87,13 @@ export default function SetPermission() {
       {/* Button to upload files */}
       <div className="flex justify-center my-4">
         <button
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={() => uploadDocument()}
         >
           Upload to IPFS
         </button>
       </div>
+  </div>
     </>
   )
 }

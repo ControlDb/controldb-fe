@@ -16,6 +16,8 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
+import Logo from './assets/logo_transparent_black.png'
+import Image from 'next/image'
 
 
 function classNames(...classes: string[]) {
@@ -28,11 +30,11 @@ export default function Header({ user }: { user: string }) {
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
+            <a href="/">
               <span className="sr-only">Your Company</span>
               <img
-                className="h-8 w-auto sm:h-10"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                className="h-20 w-auto sm:h-20"
+                src='/logo_transparent_black.png'
                 alt="Icon"
               />
             </a>
@@ -51,7 +53,6 @@ export default function Header({ user }: { user: string }) {
               href="#"
               className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             >
-              {/* Check if user sign in, else login */}
               {user ? <p>{user}</p> : <p>Login</p>}
             </a>
           </div>
@@ -72,10 +73,10 @@ export default function Header({ user }: { user: string }) {
             <div className="px-5 pt-5 pb-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <img
+                  <Image
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt="Your Company"
+                    src="./assets/logo_transparent_black.png"
+                    alt="ControlDB"
                   />
                 </div>
                 <div className="-mr-2">
