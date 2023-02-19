@@ -29,12 +29,13 @@ export default function ViewDocument() {
   return (
     <>
       <Header user={user} />
-      <div className='justify-center flex items-center'>
-        <div className='content-center'>
-          <h1 className='text-6xl font-bold my-6'>Data Info</h1>
-        </div>
+      <div className='my-6 mx-auto max-w-7xl px-6'>
+      <div className="flex flex-col justify-center items-start">
+        <h1 className="text-3xl font-bold text-gray-900">View Your File uploaded on IPFS</h1>
+        <p className='test-gray my-2'>Your File has been uploaded through our infrastructure and stored on the place you know where it will last for loooong time - IPFS. </p>
       </div>
-      <div className='w-full ml-4'>
+      </div>
+      <div className='w-full ml-28 my-8'>
         <div>
         <table className='table-auto'>
           <thead>

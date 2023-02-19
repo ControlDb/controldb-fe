@@ -46,7 +46,10 @@ export default function CreateDocument() {
       <Header user={user}/>
       <div className='my-6 mx-auto max-w-7xl px-6'>
       <div className="flex flex-col justify-center items-start">
-        <h1 className="text-3xl font-bold text-gray-900">Create a new document</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Create a new File and Upload to IPFS</h1>
+        <p className='test-gray my-2'>
+          Long storage, Fast retrieval without code on IPFS with ControlDB
+        </p>
       </div>
 
     <div className="flex justify-center my-4 bg:gray ">
