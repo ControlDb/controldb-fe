@@ -1,13 +1,19 @@
 import { useRouter, withRouter } from "next/router"
 
 import Header from "@/components/header"
+import { useEffect } from "react"
 
 export default function Documents() {
   const router = useRouter()
+  
   const user = localStorage.getItem('user')
+  if (!user) {
+    router.push({
+      pathname: '/login',
+    })
+  }
 
   // use effect to get user's documents
-  // useEffect(() => {
 
   const createNewFile = () => {
     router.push({

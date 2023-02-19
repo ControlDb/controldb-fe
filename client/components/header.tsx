@@ -33,7 +33,7 @@ export default function Header({ user }: { user: string }) {
               <img
                 className="h-8 w-auto sm:h-10"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
+                alt="Icon"
               />
             </a>
           </div>

@@ -1,9 +1,7 @@
 import { useRouter } from 'next/router'
 import { useState, useContext } from 'react'
 
-
 import Header from '../components/header'
-
 
 export default function Home() {
   const [user, setUser] = useState('')

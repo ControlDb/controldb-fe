@@ -1,16 +1,13 @@
 import Header from '@/components/header'
 import { useRouter, withRouter } from 'next/router'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 
 export default function SetPermission() {
   const router = useRouter()
   const [userRead, setUserRead] = useState<string>('')
   const [userWrite, setUserWrite] = useState<string>('')
-  
-  // Get fields from localStorage
-  const fields = JSON.parse(localStorage.getItem('fields') || '[]')
-  const user = localStorage.getItem('user') || ''
-
+  const fields = JSON.parse(localStorage.getItem('fields') || '{}')
+  const user = localStorage.getItem('user')
 
 
   const onReadChange = (e: any) => {
@@ -59,6 +56,7 @@ export default function SetPermission() {
 
   return (
     <>
+    <Header user={user} />
       <div className="flex justify-center my-4 bg:gray ">
         <div className="w-full md:w-1/2 p-4 text-lg font-semibold">Read</div>
         <div className="w-full md:w-1/2 p-4 text-lg font-semibold">Write</div>

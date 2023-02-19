@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '@/components/header';
 import { useRouter, withRouter } from "next/router"
 
@@ -7,7 +7,8 @@ export default function CreateDocument() {
   const [fields, setFields] = useState<Field[]>([]);
   const [openFieldBox, setOpenFieldBox] = useState<boolean>(false);
   const router = useRouter()
-  const user = localStorage.getItem('user')
+  const user = localStorage.getItem('user') || ''
+
 
   const addField = (field: Field) => {
     // check if field name already exists
