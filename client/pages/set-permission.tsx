@@ -34,6 +34,26 @@ export default function SetPermission() {
     userReadArray.push(user)
     userWriteArray.push(user)
 
+    // Make json object with fields and permissions
+    const json = [
+      {
+        fields: fields
+      },
+      {
+        permissions: {
+          read: userReadArray,
+          write: userWriteArray
+        }
+      }
+    ]
+
+    // Upload to IPFS
+    // TODO: Upload to IPFS
+
+    // Redirect to documents page
+    router.push({
+      pathname: '/documents',
+    })
   }
 
 
