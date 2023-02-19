@@ -15,8 +15,6 @@ export default function Home() {
     }
     base()
   }, [])
-  
-    
 
   const handleChange = (e: any) => {
     setUser(e.target.value)
@@ -28,9 +26,8 @@ export default function Home() {
       alert('Please enter a username')
       return
     }
-    localStorage.setItem('user', user)
     router.push({
-      pathname: '/documents',
+      pathname: `/user/${user}`,
     })
   }
     

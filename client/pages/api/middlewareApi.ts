@@ -27,7 +27,11 @@ export const getUserDocuments = async (userID: string) => {
 export const getDocumentInfo = async (documentID: string) => {
   try {
     const response = await axios.get(baseURL + 'document/' + documentID);
-    return response.data;
+    if (response.data) {
+      return response.data[0];
+    } else {
+      return [];
+    }
   } catch (error) {
     console.log(error);
   }

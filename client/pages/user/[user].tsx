@@ -3,18 +3,18 @@ import { useRouter, withRouter } from "next/router"
 import Header from "@/components/header"
 import { useEffect, useState } from "react"
 
-import { getUserDocuments } from './api/middlewareApi'
+import { getUserDocuments } from '../api/middlewareApi'
 
 
 export default function Documents() {
   const [documents, setDocuments] = useState<string[]>([]);
   const router = useRouter()
   
-  const user = localStorage.getItem('user') || ''
-  // const user = 'abc'
+  const user = router.query.user
   if (!user) {
     router.push({
-      pathname: '/login',
+      pathname: '/',
+      query: {user: user}
     })
   }
 
@@ -31,6 +31,14 @@ export default function Documents() {
   const createNewFile = () => {
     router.push({
       pathname: '/create-document',
+      query: {user: user}
+    })
+  }
+
+  const viewDocument = (document: string) => {
+    router.push({
+      pathname: '/view-document',
+      query: {user: user, document: document}
     })
   }
 
@@ -74,7 +82,7 @@ export default function Documents() {
           key={document}
           className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow hover:animate-wiggle"
         >
-          <div className="flex flex-1 flex-col p-8">
+          <div className="flex flex-1 flex-col p-8" onClick={() => viewDocument(document)}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
               <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
             </svg>

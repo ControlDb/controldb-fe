@@ -9,8 +9,7 @@ export default function SetPermission() {
   const [userRead, setUserRead] = useState<string>('')
   const [userWrite, setUserWrite] = useState<string>('')
   const fields = JSON.parse(localStorage.getItem('fields') || '{}')
-  const user = localStorage.getItem('user') || ''
-
+  const user = router.query.user
 
   const onReadChange = (e: any) => {
     setUserRead(e.target.value)
@@ -52,7 +51,8 @@ export default function SetPermission() {
 
     // Redirect to documents page
     router.push({
-      pathname: '/documents',
+      pathname: `/user/${user}`,
+      query: { user: user },
     })
   }
 

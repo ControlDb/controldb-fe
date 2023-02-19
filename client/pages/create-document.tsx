@@ -7,8 +7,7 @@ export default function CreateDocument() {
   const [fields, setFields] = useState<Field[]>([]);
   const [openFieldBox, setOpenFieldBox] = useState<boolean>(false);
   const router = useRouter()
-  const user = localStorage.getItem('user') || ''
-
+  const user = router.query.user
 
   const addField = (field: Field) => {
     // check if field name already exists
@@ -38,6 +37,7 @@ export default function CreateDocument() {
 
     router.push({
       pathname: '/set-permission',
+      query: { user: user },
     })
   }
 
