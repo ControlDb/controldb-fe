@@ -11,12 +11,6 @@ export default function Documents() {
   const router = useRouter()
   
   const user = router.query.user
-  if (!user) {
-    router.push({
-      pathname: '/',
-      query: {user: user}
-    })
-  }
 
   // use effect to get user's documents
   useEffect(() => {
@@ -26,7 +20,7 @@ export default function Documents() {
       console.log('RESPONSE', res)
     }
     getDocuments()
-  }, [])
+  }, [user])
 
   const createNewFile = () => {
     router.push({
