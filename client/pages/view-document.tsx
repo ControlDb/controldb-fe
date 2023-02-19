@@ -12,7 +12,7 @@ export default function ViewDocument() {
 
   const viewDocument = () => {
     router.push({
-      pathname: `/users/${user}`,
+      pathname: `/user/${user}`,
       query: {user: user}
     })
   }
