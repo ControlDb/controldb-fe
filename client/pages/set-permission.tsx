@@ -34,17 +34,14 @@ export default function SetPermission() {
     userWriteArray.push(user)
 
     // Make json object with fields and permissions
-    const json = [
-      {
-        fields: fields
-      },
-      {
-        permissions: {
+    const json = [ fields, 
+        {
           read: userReadArray,
           write: userWriteArray
         }
-      }
     ]
+
+    console.log("json", json)
 
     // Upload to IPFS
     const uploadToIPFS = async () => {

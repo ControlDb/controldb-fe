@@ -40,7 +40,7 @@ export const createUserDocument = async (userID: string, document: any) => {
     console.log('url', baseURL + 'document/' + userID);
     const response = await axios.post(
       baseURL + 'document/' + userID,
-      { document },
+      [document[0][0], document[1]],
       );
     return response.data;
   } catch (error) {
