@@ -40,6 +40,12 @@ export default function Documents() {
   return (
     <>
     <Header user={user} />
+    <div className="mx-auto max-w-7xl px-6">
+      <div className="flex flex-col justify-center items-start">
+        <h1 className="text-3xl font-bold text-gray-900">My Decentralised Data Store</h1>
+        <p className="text-gray-500 my-4">Here you can view all of your documents that you have access to that is stored on IPFS.</p>
+        <p className="text-gray-500">Or you could create a new file on IPFS!</p>
+      </div>
     <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-6">
       <li
           key='1'
@@ -100,6 +106,7 @@ export default function Documents() {
         </li>
       ))}
     </ul>
+    </div>
     </>
   )
 }

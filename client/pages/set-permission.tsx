@@ -62,10 +62,14 @@ export default function SetPermission() {
       {/* Add a text explaining how the solution uniquely allows for private read and write
       Mission-critical for applications handling sensitive data (eg. FinTech) */}
       <div className="flex justify-center my-4">
-        <div className="w-full md:w-1/2 p-4 text-2xl font-bold">
+        <div className="w-full md:w-1/2">
+          <p className='p-4 text-2xl font-bold'>
           Enter usernames for read and write permissions. 
+          </p>
           <br />
+          <p>
           This is important for applications handling sensitive data on decentralised storage solution.
+          </p>
         </div>
       </div>
       <div className="flex justify-center my-4 bg:gray">
@@ -92,7 +96,7 @@ export default function SetPermission() {
         </div>
       </div>
       {/* Button to upload files */}
-      <div className="flex justify-center my-4">
+      <div className="flex justify-center my-20">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={() => uploadDocument()}
