@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
- const baseURL = 'http://localhost:10000/';
+const baseURL = 'http://localhost:10000/';
 
 // Base route
 export const baseCall = async() => {
@@ -20,7 +20,7 @@ export const getUserDocuments = async (userID: string) => {
 }
 
 // Get a specific document based on the document ID
-export const getUserDocument = async (documentID: string) => {
+export const getDocumentInfo = async (documentID: string) => {
   try {
     const response = await axios.get(baseURL + 'document/' + documentID);
     return response.data;
@@ -29,7 +29,7 @@ export const getUserDocument = async (documentID: string) => {
   }
 }
 
-// Create a new document for a user where the inputs are the user ID and a array of json objects
+// Create a new document for a user where the inputs are the user ID and a array of json objects. Uploads to IPFS
 export const createUserDocument = async (userID: string, document: any) => {
   try {
     const response = await axios.post(

@@ -2,12 +2,14 @@ import Header from '@/components/header'
 import { useRouter, withRouter } from 'next/router'
 import { useState, useContext, useEffect } from 'react'
 
+import { createUserDocument } from './api/middleware'
+
 export default function SetPermission() {
   const router = useRouter()
   const [userRead, setUserRead] = useState<string>('')
   const [userWrite, setUserWrite] = useState<string>('')
   const fields = JSON.parse(localStorage.getItem('fields') || '{}')
-  const user = localStorage.getItem('user')
+  const user = localStorage.getItem('user') || ''
 
 
   const onReadChange = (e: any) => {
@@ -45,7 +47,11 @@ export default function SetPermission() {
     ]
 
     // Upload to IPFS
-    // TODO: Upload to IPFS
+    const uploadToIPFS = async () => {
+      const res = await createUserDocument(user, json)
+      console.log(res)
+    }
+    uploadToIPFS()
 
     // Redirect to documents page
     router.push({

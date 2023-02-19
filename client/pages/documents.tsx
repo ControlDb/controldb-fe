@@ -1,12 +1,19 @@
 import { useRouter, withRouter } from "next/router"
 
 import Header from "@/components/header"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+
+import { getUserDocuments } from './api/middleware'
+
+interface IPFSDocument {
+  uuid: string;
+}
 
 export default function Documents() {
+  const [documents, setDocuments] = useState<IPFSDocument[]>([]);
   const router = useRouter()
   
-  const user = localStorage.getItem('user')
+  const user = localStorage.getItem('user') || ''
   if (!user) {
     router.push({
       pathname: '/login',
@@ -14,6 +21,14 @@ export default function Documents() {
   }
 
   // use effect to get user's documents
+  useEffect(() => {
+    const getDocuments = async () => {
+      const res = await getUserDocuments(user)
+      setDocuments(res)
+      console.log(res)
+    }
+    getDocuments()
+  }, [])
 
   const createNewFile = () => {
     router.push({
@@ -21,36 +36,7 @@ export default function Documents() {
     })
   }
 
-  const people = [
-  {
-    name: 'Jane Cooper',
-    title: 'Paradigm Representative',
-    role: 'Admin',
-    email: 'janecooper@example.com',
-    telephone: '+1-202-555-0170',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-    {
-    name: 'Jane Cooper',
-    title: 'Paradigm Representative',
-    role: 'Admin',
-    email: 'janecooper@example.com',
-    telephone: '+1-202-555-0170',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-    {
-    name: 'Jane Cooper',
-    title: 'Paradigm Representative',
-    role: 'Admin',
-    email: 'janecooper@example.com',
-    telephone: '+1-202-555-0170',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-  // More people...
-]
+  
   return (
     <>
     <Header user={user} />
@@ -84,21 +70,21 @@ export default function Documents() {
             </div>
           </div>
         </li>
-      {people.map((person) => (
+      {documents.map((document) => (
         <li
-          key={person.email}
+          key={document.uuid}
           className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
         >
           <div className="flex flex-1 flex-col p-8">
-            <img className="mx-auto h-32 w-32 flex-shrink-0 rounded-full" src={person.imageUrl} alt="" />
-            <h3 className="mt-6 text-sm font-medium text-gray-900">{person.name}</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+            </svg>
+
+            <h3 className="mt-6 text-sm font-medium text-gray-900">{document.uuid}</h3>
             <dl className="mt-1 flex flex-grow flex-col justify-between">
-              <dt className="sr-only">Title</dt>
-              <dd className="text-sm text-gray-500">{person.title}</dd>
-              <dt className="sr-only">Role</dt>
               <dd className="mt-3">
                 <span className="rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800">
-                  {person.role}
+                  Document ID
                 </span>
               </dd>
             </dl>
