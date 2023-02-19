@@ -28,7 +28,7 @@ export const getDocumentInfo = async (documentID: string) => {
   try {
     const response = await axios.get(baseURL + 'document/' + documentID);
     if (response.data) {
-      return response.data[0];
+      return response.data;
     } else {
       return [];
     }
@@ -42,9 +42,14 @@ export const createUserDocument = async (userID: string, document: any) => {
   try {
     console.log('document created', document);
     console.log('url', baseURL + 'document/' + userID);
+    const array = [];
+    for (let i = 0; i < document.length; i++) {
+      array.push(document[0][i]);
+    }
+    array.push(document[1]);
     const response = await axios.post(
       baseURL + 'document/' + userID,
-      [document[0][0], document[1]],
+      array,
       );
     return response.data;
   } catch (error) {
