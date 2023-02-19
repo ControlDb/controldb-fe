@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter, withRouter } from 'next/router'
 import { useState, useContext, useEffect } from 'react'
 
-import { getDocumentInfo } from './api/middleware'
+import { getDocumentInfo } from './api/middlewareApi'
 
 export default function ViewDocument() {
   const router = useRouter()

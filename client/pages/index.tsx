@@ -2,20 +2,20 @@ import { useRouter } from 'next/router'
 import { useState, useContext, useEffect } from 'react'
 
 import Header from '../components/header'
-import { baseCall } from './api/middleware'
+import { baseCall } from './api/middlewareApi'
 
 export default function Home() {
   const [user, setUser] = useState('')
   const router = useRouter()
 
   useEffect(() => {
-    // baseCall 
-    const testCall = async () => {
+    const base = async () => {
       const res = await baseCall()
       console.log(res)
     }
-    testCall()
+    base()
   }, [])
+  
     
 
   const handleChange = (e: any) => {

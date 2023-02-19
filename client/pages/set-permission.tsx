@@ -2,7 +2,7 @@ import Header from '@/components/header'
 import { useRouter, withRouter } from 'next/router'
 import { useState, useContext, useEffect } from 'react'
 
-import { createUserDocument } from './api/middleware'
+import { createUserDocument } from './api/middlewareApi'
 
 export default function SetPermission() {
   const router = useRouter()
@@ -49,7 +49,7 @@ export default function SetPermission() {
     // Upload to IPFS
     const uploadToIPFS = async () => {
       const res = await createUserDocument(user, json)
-      console.log(res)
+      console.log("Uploading to ipfs", res)
     }
     uploadToIPFS()
 
@@ -64,8 +64,8 @@ export default function SetPermission() {
     <>
     <Header user={user} />
       <div className="flex justify-center my-4 bg:gray ">
-        <div className="w-full md:w-1/2 p-4 text-lg font-semibold">Read</div>
-        <div className="w-full md:w-1/2 p-4 text-lg font-semibold">Write</div>
+        <div className="w-full md:w-1/2 p-4 text-2xl font-bold">Read</div>
+        <div className="w-full md:w-1/2 p-4 text-2xl font-bold">Write</div>
       </div>
       <div className="flex justify-center my-4 bg:gray ">
         <div className="w-full md:w-1/2 p-4 text-lg font-semibold">

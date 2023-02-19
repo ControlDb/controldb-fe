@@ -12,8 +12,12 @@ export const baseCall = async() => {
 // Get all documents uuid for a user
 export const getUserDocuments = async (userID: string) => {
   try {
-    const response = await axios.get(baseURL + 'user/' + userID);
-    return response.data;
+    const response = await axios.get(baseURL + 'documents/user/' + userID);
+    if (response.data) {
+      return response.data;
+    } else {
+      return [];
+    }
   } catch (error) {
     console.log(error);
   }
@@ -32,9 +36,11 @@ export const getDocumentInfo = async (documentID: string) => {
 // Create a new document for a user where the inputs are the user ID and a array of json objects. Uploads to IPFS
 export const createUserDocument = async (userID: string, document: any) => {
   try {
+    console.log('document created', document);
+    console.log('url', baseURL + 'document/' + userID);
     const response = await axios.post(
-      baseURL + 'user/' + userID,
-      { document: document },
+      baseURL + 'document/' + userID,
+      { document },
       );
     return response.data;
   } catch (error) {
