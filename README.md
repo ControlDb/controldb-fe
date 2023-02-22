@@ -14,3 +14,7 @@ FE demo
 
 
 <img width="883" alt="Screenshot 2023-02-19 at 9 40 23 AM" src="https://user-images.githubusercontent.com/46377366/219965230-1c672988-5e3d-477d-bb33-8076ca65e80d.png">
+
+
+### Docker
+`docker build .`
